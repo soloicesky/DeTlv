@@ -10,7 +10,7 @@
 #define _TLVDECODER_ERRORNO_H_
 
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -19,7 +19,7 @@ extern "C"
 
 
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 }
 #endif
 

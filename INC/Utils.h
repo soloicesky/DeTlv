@@ -5,7 +5,7 @@
 
 #include "UserType.h"
 
-#ifdef _cpluscplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -31,7 +31,7 @@ int32 hexStringToByteArray(byteArray desBytearray, int32 *byteArrayLen, cstring 
 int32 byteArrayToHexString(cstring desHexString, byteArray srcByteArray, int32 srcByteArrayLen);
 
 
-#ifdef _cpluscplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -10,12 +10,13 @@
 #define _TAG_H_
 
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
 
 #include "UserType.h"
+
 
 #define TAG_LENGTH			3
 
@@ -24,7 +25,7 @@ boolean isConstructedTag(byte *tag);
 int32 parseTag(byte *tag, byte *tagLen, byte **constructedTlvData, int *constructedTlvDataLen);
 
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 }
 #endif
 

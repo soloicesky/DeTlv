@@ -12,6 +12,7 @@ extern "C"
 #define ERR_PARSE_LENGTH				-3
 #define ERR_MEMALLOC_VALUE				-4
 #define ERR_SAVEDATA_FAIL				-5
+#define ERR_PARSE_VALUE					-6
 
 #ifdef _cplusplus
 }

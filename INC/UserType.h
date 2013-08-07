@@ -1,7 +1,7 @@
 #ifndef _USERTYPE_H_
 #define _USERTYPE_H_
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -24,7 +24,7 @@ extern "C"
 #define false		(0)					//ผู
 
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 }
 #endif
 

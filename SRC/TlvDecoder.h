@@ -10,7 +10,7 @@
 #define _TLV_DECODER_H_
 
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -24,11 +24,15 @@ typedef int32 (*saveTlvElement)(byte *tag, byte tagLen,int32 len, byteArray valu
 typedef int32 (*saveTlElement)(byte *tag, byte tagLen,int32 len);
 
 
-int32 decodeConstructedTlvData(void *saveDataInterface,byteArray constructedData,
+int32 decodeConstructedTlvData(void *saveDataCallback,byteArray constructedData,
 							int32 constructedDataLen, boolean parseConstructedTags);
 
+boolean checkTlvExist(uint16 tagToCheck, byteArray *constructedData, 
+						uint16 constructedDataLen, uint16 *tagLen,boolean parseConstructedTags);
 
-#ifdef _cplusplus
+
+
+#ifdef __cplusplus
 }
 #endif
 

@@ -50,19 +50,39 @@ int32 parseTag(byte *tag, byte *tagLen, byte **constructedTlvData, int32 *constr
 		return ERR_INVALID_PARAMETER;
 	}
 
-	*tag = **constructedTlvData;
-	*constructedTlvData += 1;
-	*tagLen = 1;
-	*constructedTlvDataLen -= 1;
-
-	if((*tag & 0x1F) == 0x1F /*  VALUE_EQUALL(*tag, 0x1F)*/) //如果第一个字节前5bit全是1则表明还有后续的tag
+	while(*constructedTlvDataLen > 0)
 	{
-		do{
-			tag[*tagLen] = **constructedTlvData;
-			*tagLen += 1;
-			*constructedTlvDataLen -= 1;			
-			*constructedTlvData += 1;
-		}while((tag[*tagLen - 1] & 0x80) == 0x80/* VALUE_EQUALL(tag[*tagLen - 1], 0x80)*/);
+		*tag = **constructedTlvData;
+		*constructedTlvData += 1;
+		*tagLen = 1;
+		*constructedTlvDataLen -= 1;
+
+		if(*tag == 0xFF || *tag == 0x00)
+		{
+			continue;
+		}
+
+		if(*constructedTlvDataLen < 0)
+		{
+			return ERR_PARSE_TAG;
+		}
+
+		if((*tag & 0x1F) == 0x1F /*  VALUE_EQUALL(*tag, 0x1F)*/) //如果第一个字节前5bit全是1则表明还有后续的tag
+		{
+			do{
+				tag[*tagLen] = **constructedTlvData;
+				*tagLen += 1;
+				*constructedTlvDataLen -= 1;			
+				*constructedTlvData += 1;
+
+				if(*constructedTlvDataLen < 0)
+				{
+					return ERR_PARSE_TAG;
+				}
+			}while((tag[*tagLen - 1] & 0x80) == 0x80/* VALUE_EQUALL(tag[*tagLen - 1], 0x80)*/);
+
+			break;
+		}
 	}
 
 	return 0;
